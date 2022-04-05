@@ -1,0 +1,45 @@
+<script type="text/javascript">
+  RED.nodes.registerType('mqtt-vacuum', {
+    category: 'function',
+    color: '#33B2FF',
+    icon: 'roomba.png',
+    defaults: {
+      name: { value:'' },
+      storage_folder: { value:'./', required: true},
+      brushReset: { value: 'brushReset', required: true},
+      filterReset: { value: 'filterReset', required: true},
+    },
+    inputs: 1,
+    outputs: 2,
+    label: function () {
+      return this.name || 'mqtt-vacuum';
+    },
+    labelStyle: function () {
+      return this.name ? 'node_label_italic' : '';
+    },
+    outputLabels: ['jsonStatus','status'],
+  });
+</script>
+
+<script type="text/html" data-template-name="mqtt-vacuum">
+  <div class="form-row">
+    <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+    <input type="text" id="node-input-name" placeholder="Name">
+  </div>
+  <div class="form-row">
+    <label for="node-input-storage_folder"><i class="fa fa-folder"></i> Storage Folder</label>
+    <input type="text" id="node-input-storage_folder">
+  </div>
+  <div class="form-row">
+    <label for="node-input-brushReset"><i class="fa fa-tasks"></i> Reset Brush Topic</label>
+    <input type="text" id="node-input-brushReset">
+  </div>
+  <div class="form-row">
+    <label for="node-input-filterReset"><i class="fa fa-tasks"></i> Reset Filter Topic</label>
+    <input type="text" id="node-input-filterReset">
+  </div>
+</script>
+
+<script type="text/html" data-help-name="mqtt-vacuum">
+  <p>MQTT Vacuum</p>
+</script>

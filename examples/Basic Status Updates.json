@@ -1,0 +1,83 @@
+[
+    {
+        "id": "316e9ec815432bc8",
+        "type": "tab",
+        "label": "Basic Status Updates",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "c9b807e7b1382c19",
+        "type": "mqtt-vacuum",
+        "z": "316e9ec815432bc8",
+        "name": "",
+        "storage_folder": "./",
+        "brushReset": "brushReset",
+        "filterReset": "filterReset",
+        "x": 550,
+        "y": 280,
+        "wires": [
+            [
+                "4061e782756f5167"
+            ],
+            [
+                "4c04e949ddce98f5"
+            ]
+        ]
+    },
+    {
+        "id": "5ae6952bdd83d8bb",
+        "type": "mqtt in",
+        "z": "316e9ec815432bc8",
+        "name": "",
+        "topic": "",
+        "qos": "2",
+        "datatype": "auto",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 330,
+        "y": 280,
+        "wires": [
+            [
+                "c9b807e7b1382c19"
+            ]
+        ]
+    },
+    {
+        "id": "4061e782756f5167",
+        "type": "mqtt out",
+        "z": "316e9ec815432bc8",
+        "name": "",
+        "topic": "",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "x": 810,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "4c04e949ddce98f5",
+        "type": "mqtt out",
+        "z": "316e9ec815432bc8",
+        "name": "",
+        "topic": "",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "x": 810,
+        "y": 320,
+        "wires": []
+    }
+]

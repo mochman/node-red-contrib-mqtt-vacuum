@@ -1,0 +1,46 @@
+{
+	"name": "@mochman/node-red-contrib-mqtt-vacuum",
+	"version": "0.1.0",
+	"description": "Provides status updates from mqtt inputs for a vacuum",
+	"main": "mqtt-vacuum.js",
+	"scripts": {
+		"test": "mocha \"test/*_spec.js\"",
+		"validate": "node-red-dev validate -o validation_result.json"
+	},
+	"keywords": [
+		"vacuum",
+		"mqtt",
+		"esp",
+		"node-red"
+	],
+	"node-red": {
+		"version": ">2.0.0",
+		"nodes": {
+			"mqtt-vacuum": "mqtt-vacuum.js"
+		}
+	},
+	"devDependencies": {
+		"mocha": "^9.2.1",
+		"node-red": "^2.2.2",
+		"node-red-node-test-helper": "^0.2.7",
+		"prettier": "2.5.1"
+	},
+	"author": {
+		"name": "Luke Moch",
+		"url": "https://www.github.com/mochman/"
+	},
+	"license": "GPL-3.0-only",
+	"repository": {
+		"type": "git",
+		"url": "git+https://www.github.com/mochman/node-red-contrib-mqtt-vacuum.git"
+	},
+	"bugs": "https://www.github.com/mochman/node-red-contrib-mqtt-vacuum/issues",
+	"homepage": "https://www.github.com/mochman/node-red-contrib-mqtt-vacuum",
+	"engines": {
+		"node": ">=12",
+		"npm": ">=6.9"
+	},
+	"publishConfig": {
+		"access": "public"
+	}
+}
