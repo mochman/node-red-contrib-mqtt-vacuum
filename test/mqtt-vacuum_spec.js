@@ -5,7 +5,7 @@ let defaultFlow = [
 		id: 'n1',
 		type: 'mqtt-vacuum',
 		name: 'test name',
-		storage_folder: './',
+		storage_folder: './test/',
 		brushReset: 'brushReset',
 		filterReset: 'filterReset',
 		wires: [['n2'], ['n3']],
