@@ -82,7 +82,7 @@ module.exports = function (RED) {
 				const topic = /\w+$/.exec(msg.topic)[0].toLowerCase();
 				if (neededMsgs.includes(topic)) {
 					if (topic === 'status') {
-						this['showStatus'] = msg.payload;
+						this.showStatus = msg.payload;
 						if (msg.payload === 'Cleaning') {
 							this.startTime = Date.now();
 						}
@@ -193,7 +193,6 @@ module.exports = function (RED) {
 				}
 			}
 			this.previous = this.isCleaning;
-
 			let outMsg = RED.util.cloneMessage(msg);
 			outMsg.payload = currentStatus;
 			let longStatus = '';
@@ -214,11 +213,7 @@ module.exports = function (RED) {
 				}
 				node.status({ fill: 'green', shape: 'ring', text: longStatus });
 			}
-			let longOut = null;
-			if (this.lastStatus != longStatus) {
-				longOut = { payload: longStatus };
-			}
-			this.lastStatus = longStatus;
+			let longOut = { payload: longStatus };
 			if (goodTopic) {
 				node.send([outMsg, longOut]);
 			}
