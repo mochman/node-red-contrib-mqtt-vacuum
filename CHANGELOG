@@ -1,1 +1,3 @@
+v0.2.0 - Fixed Output 2 from not sending a message when Output 1 does.
+v0.1.0 - Initial publish on flows.nodered
 v0.0.3 - Initial Release

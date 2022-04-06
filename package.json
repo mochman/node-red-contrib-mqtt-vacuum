@@ -1,6 +1,6 @@
 {
 	"name": "@mochman/node-red-contrib-mqtt-vacuum",
-	"version": "0.1.0",
+	"version": "0.2.0",
 	"description": "Provides status updates from mqtt inputs for a vacuum",
 	"main": "mqtt-vacuum.js",
 	"scripts": {
