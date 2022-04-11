@@ -8,6 +8,8 @@
       storage_folder: { value:'./', required: true},
       brushReset: { value: 'brushReset', required: true},
       filterReset: { value: 'filterReset', required: true},
+      maxBrushTime: { value: 12, required: true, validate:RED.validators.number()},
+      maxFilterTime: { value: 48, required: true, validate:RED.validators.number()},
     },
     inputs: 1,
     outputs: 2,
@@ -33,11 +35,19 @@
   </div>
   <div class="form-row">
     <label for="node-input-brushReset"><i class="fa fa-tasks"></i> Reset Brush Topic</label>
-    <input type="text" id="node-input-brushReset">
+    <input type="text" id="node-input-brushReset" style="width:120px !important">
+  </div>
+  <div class="form-row">
+    <label for="node-input-maxBrushTime"><i class="fa fa-clock-o"></i> Brush Time</label>
+    <input type="text" id="node-input-maxBrushTime" style="text-align:end; width:40px !important"> Hours
   </div>
   <div class="form-row">
     <label for="node-input-filterReset"><i class="fa fa-tasks"></i> Reset Filter Topic</label>
-    <input type="text" id="node-input-filterReset">
+    <input type="text" id="node-input-filterReset" style="width:120px !important">
+  </div>
+  <div class="form-row">
+    <label for="node-input-maxFilterTime"><i class="fa fa-clock-o"></i> Filter Time</label>
+    <input type="text" id="node-input-maxFilterTime" style="text-align:end; width:40px !important"> Hours
   </div>
 </script>
 
