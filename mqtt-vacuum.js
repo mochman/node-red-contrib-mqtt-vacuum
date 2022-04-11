@@ -1,5 +1,3 @@
-const { exit } = require('process');
-
 module.exports = function (RED) {
 	const fs = require('fs');
 
@@ -56,6 +54,8 @@ module.exports = function (RED) {
 		node.on('input', function (msg) {
 			this.brushResetTopic = config.brushReset || 'brushReset';
 			this.filterResetTopic = config.filterReset || 'filterReset';
+			this.maxFilterTime = config.maxFilterTime || 48;
+			this.maxBrushTime = config.maxBrushTime || 12;
 			let currentStatus = {
 				state: 'docked',
 				fan_speed: 'off',
@@ -75,8 +75,6 @@ module.exports = function (RED) {
 			let isError = false;
 			let fullBatt = this.battery === 100;
 			let goodTopic = false;
-			const maxFilterHours = 24;
-			const maxBrushHours = 6;
 
 			if (msg.topic != undefined) {
 				const topic = /\w+$/.exec(msg.topic)[0].toLowerCase();
@@ -172,8 +170,8 @@ module.exports = function (RED) {
 			} else if (this.wheel !== 2) {
 				issues = issues.filter((x) => x !== 'Wheel');
 			}
-			if (filterTime >= maxFilterHours) issues.push('Filter');
-			if (brushTime >= maxBrushHours) issues.push('Brush');
+			if (filterTime >= this.maxFilterTime) issues.push('Filter');
+			if (brushTime >= this.maxBrushTime) issues.push('Brush');
 			if (issues.length === 0) issues.push('Nothing');
 			currentStatus.wheel_status = oxfordComma(issues);
 
