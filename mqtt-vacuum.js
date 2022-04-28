@@ -18,6 +18,38 @@ module.exports = function (RED) {
 		});
 	}
 
+	function calcTime(ms, units) {
+		let correctTime = 0;
+		switch (units) {
+			case 'minutes':
+				correctTime = Math.round(ms / 1000 / 6) / 10;
+				break;
+			case 'hours':
+				correctTime = Math.round(ms / 1000 / 60 / 6) / 10;
+				break;
+			case 'days':
+				correctTime = Math.round(ms / 1000 / 60 / 60 / 2.4) / 10;
+				break;
+		}
+		return correctTime;
+	}
+
+	function calcArea(ms, units) {
+		let correctArea = 0;
+		switch (units) {
+			case 'ft':
+				correctArea = Math.round((ms / 1000 / 60) * 2.5 * 10.76391) / 10;
+				break;
+			case 'yd':
+				correctArea = Math.round((ms / 1000 / 60) * 2.5 * 1.19599) / 10;
+				break;
+			case 'acre':
+				correctArea = Math.round(((ms / 1000 / 60) * 2.5 * 1.19599) / 4840) / 10;
+				break;
+		}
+		return correctArea;
+	}
+
 	function VacuumNode(config) {
 		let node = this;
 		RED.nodes.createNode(this, config);
@@ -56,6 +88,8 @@ module.exports = function (RED) {
 			this.filterResetTopic = config.filterReset || 'filterReset';
 			this.maxFilterTime = config.maxFilterTime || 48;
 			this.maxBrushTime = config.maxBrushTime || 12;
+			this.cleaningTimeUnits = config.cleaningTimeUnits || 'hours';
+			this.cleaningAreaUnits = config.cleaningAreaUnits || 'acre';
 			let currentStatus = {
 				state: 'docked',
 				fan_speed: 'off',
@@ -156,11 +190,10 @@ module.exports = function (RED) {
 			currentStatus.battery_level = this.battery;
 
 			// status[filter_usage / brush_usage / total_time / total_area]
-			const totalTime = startTimes['total_time'] / 1000 / 60; // In Minutes
 			const filterTime = startTimes['filter_time'] / 1000 / 60 / 60; // In Hours
 			const brushTime = startTimes['brush_time'] / 1000 / 60 / 60; // In Hours
-			currentStatus.total_time = Math.round(totalTime / 6) / 10;
-			currentStatus.total_area = Math.round(totalTime * 2.5 * 1.19599) / 10;
+			currentStatus.total_time = calcTime(startTimes['total_time'], this.cleaningTimeUnits);
+			currentStatus.total_area = calcArea(startTimes['total_time'], this.cleaningAreaUnits);
 			currentStatus.brush_usage = Math.round(brushTime * 10) / 10;
 			currentStatus.filter_usage = Math.round(filterTime * 10) / 10;
 
