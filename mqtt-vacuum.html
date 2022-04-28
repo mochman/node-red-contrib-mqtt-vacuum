@@ -10,6 +10,8 @@
       filterReset: { value: 'filterReset', required: true},
       maxBrushTime: { value: 12, required: true, validate:RED.validators.number()},
       maxFilterTime: { value: 48, required: true, validate:RED.validators.number()},
+      cleaningTimeUnits: { value: 'hours', required: true },
+      cleaningAreaUnits: { value: 'yd', required: true },
     },
     inputs: 1,
     outputs: 2,
@@ -48,6 +50,22 @@
   <div class="form-row">
     <label for="node-input-maxFilterTime"><i class="fa fa-clock-o"></i> Filter Time</label>
     <input type="text" id="node-input-maxFilterTime" style="text-align:end; width:40px !important"> Hours
+  </div>
+  <div class="form-row">
+    <label for="node-input-cleaningTimeUnits"><i class="fa fa-clock-o"></i> Cleaned Time Units</label>
+    <select id="node-input-cleaningTimeUnits" style="width:170px !important">
+      <option value="minutes">Minutes</option>
+      <option value="hours">Hours</option>
+      <option value="days">Days</option>
+    </select>
+  </div>
+  <div class="form-row">
+    <label for="node-input-cleaningAreaUnits"><i class="fa fa-square-o"></i> Cleaned Area Units</label>
+    <select id="node-input-cleaningAreaUnits" style="width:170px !important">
+      <option value="ft">ft²</option>
+      <option value="yd">yd²</option>
+      <option value="acre">acre</option>
+    </select>
   </div>
 </script>
 
